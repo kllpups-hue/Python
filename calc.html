@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Интерактивный калькулятор</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .calculator {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            width: 350px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+        #sum {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #sum:hover {
+            background-color: #45a049;
+        }
+        #difference {
+            background-color: #f44336;
+            color: white;
+        }
+        #difference:hover {
+            background-color: #d32f2f;
+        }
+        #product {
+            background-color: #2196F3;
+            color: white;
+        }
+        #product:hover {
+            background-color: #1976D2;
+        }
+        #division {
+            background-color: #ff9800;
+            color: white;
+        }
+        #division:hover {
+            background-color: #e68a00;
+        }
+        #result {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 18px;
+            color: #333;
+            background-color: #f9f9f9;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Калькулятор</h1>
+
+        <div class="input-group">
+            <input type="text" id="num1" placeholder="Первое число">
+        </div>
+        <div class="input-group">
+            <input type="text" id="num2" placeholder="Второе число">
+        </div>
+
+        <div class="buttons">
+            <button id="sum">Сумма</button>
+            <button id="difference">Разность</button>
+            <button id="product">Произведение</button>
+            <button id="division">Деление</button>
+        </div>
+
+        <div id="result">Результат: —</div>
+    </div>
+
+    <script>
+        // Получаем элементы DOM
+        const num1Input = document.getElementById('num1');
+        const num2Input = document.getElementById('num2');
+        const resultDiv = document.getElementById('result');
+
+        // Функции математических операций
+        function sum() {
+            const a = parseFloat(num1Input.value);
+            const b = parseFloat(num2Input.value);
+            if (isNaN(a) || isNaN(b)) {
+                resultDiv.textContent = 'Ошибка: введите корректные числа!';
+                return;
+            }
+            resultDiv.textContent = `Результат: ${a + b}`;
+        }
+
+        function difference() {
+            const a = parseFloat(num1Input.value);
+            const b = parseFloat(num2Input.value);
+            if (isNaN(a) || isNaN(b)) {
+                resultDiv.textContent = 'Ошибка: введите корректные числа!';
+                return;
+            }
+            resultDiv.textContent = `Результат: ${a - b}`;
+        }
+
+        function product() {
+            const a = parseFloat(num1Input.value);
+            const b = parseFloat(num2Input.value);
+            if (isNaN(a) || isNaN(b)) {
+                resultDiv.textContent = 'Ошибка: введите корректные числа!';
+                return;
+            }
+            resultDiv.textContent = `Результат: ${a * b}`;
+        }
+
+        function division() {
+            const a = parseFloat(num1Input.value);
+            const b = parseFloat(num2Input.value);
+            if (isNaN(a) || isNaN(b)) {
+                resultDiv.textContent = 'Ошибка: введите корректные числа!';
+                return;
+            }
+            if (b === 0) {
+                resultDiv.textContent = 'Ошибка: деление на ноль!';
+                return;
+            }
+            resultDiv.textContent = `Результат: ${a / b}`;
+        }
+
+        // Назначаем обработчики событий на кнопки
+        document.getElementById('sum').addEventListener('click', sum);
+        document.getElementById('difference').addEventListener('click', difference);
+        document.getElementById('product').addEventListener('click', product);
+        document.getElementById('division').addEventListener('click', division);
+    </script>
+</body>
+</html>
