@@ -1,0 +1,39 @@
+{% extends 'greeting/base.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<div class="greeting-card">
+    {% if greeting_name %}
+        <div class="personal-greeting">
+            <h2>👋 Привет, {{ greeting_name }}!</h2>
+            <p>Мы рады приветствовать вас в нашем приложении!</p>
+        </div>
+    {% endif %}
+    
+    <div class="form-container">
+        <h2>Введите ваше имя</h2>
+        <form method="post" action="{% url 'index' %}" class="name-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Ваше имя:</label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    placeholder="Например, Иван" 
+                    maxlength="100"
+                    required
+                >
+            </div>
+            <button type="submit" class="submit-btn">Отправить</button>
+        </form>
+    </div>
+    
+    <div class="info-section">
+        <h3>О приложении</h3>
+        <p>Это простое веб-приложение сохраняет ваше имя в базе данных и приветствует вас при каждом посещении.</p>
+        <p class="security-note">🔒 Все данные защищены с использованием CSRF-токенов</p>
+    </div>
+</div>
+{% endblock %}
